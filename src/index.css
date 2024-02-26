@@ -1,3 +1,44 @@
+
+/* Import tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Laila:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,500&family=Style+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;1,6..12,200;1,6..12,300&display=swap');
+.font-popone{ 
+  font-family: 'Mochiy Pop One', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Style Script', cursive;
+}
+.font-nunito{ 
+  font-family: 'Nunito Sans', sans-serif;
+}
+.left-image{
+  background-image: url('https://media.licdn.com/dms/image/C560DAQGdq6U4qXnb0g/learning-public-crop_288_512/0/1626455357616?e=2147483647&v=beta&t=wLYW78NKd29twMx9s97UpeY-45J3PlAZh-e6FSNxcH4');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.back-image
+{
+  background-image:  url('https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2068&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: 600px;
+}
+
+.back-left-log{
+  background-image: url('https://images.unsplash.com/photo-1565619624098-cf4168a7cd9d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-position: center;
+  background-size: cover;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +51,33 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.laila-light {
+  font-family: "Laila", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.laila-regular {
+  font-family: "Laila", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.laila-medium {
+  font-family: "Laila", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.laila-semibold {
+  font-family: "Laila", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.laila-bold {
+  font-family: "Laila", serif;
+  font-weight: 700;
+  font-style: normal;
 }
