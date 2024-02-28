@@ -10,6 +10,7 @@ import CardProject from "../Component/CardProject.tsx";
 import ModalProject from "../Component/ModalProject.tsx";
 import TabContent from "../Component/TabContent.tsx";
 import NotificationBox from "../Component/Notification.tsx";
+import ListTask from "../Component/TabTask.tsx";
 export default function Home(){
     // const location = useLocation();
     // const user = location.state.user;    
@@ -70,13 +71,13 @@ export default function Home(){
                     <main className="mt-12 overflow-y-auto h-full">
                         <ul className="flex flex-col gap-5">
                           <MenuDashboard name={'Home'} icon={faHouse} isSbumenu={false} subMenu={null} active={active.activeHome} onItem={PageHome} />
-                            <MenuDashboard name={'projet'} icon={faFolderTree} isSbumenu={true} subMenu={null} active={active.activeProject} onItem={PageProject}  />
-                            <MenuDashboard name={'Tâche'} icon={faListCheck} subMenu={null} isSbumenu={true} active= {active.activeTask} onItem={PageTask} />
+                            <MenuDashboard name={'project'} icon={faFolderTree} isSbumenu={true} subMenu={null} active={active.activeProject} onItem={PageProject}  />
+                            <MenuDashboard name={'Task'} icon={faListCheck} subMenu={null} isSbumenu={true} active= {active.activeTask} onItem={PageTask} />
                         </ul>
                     </main>
                 </div>
-                <div className="bg-slate-200 w-full relative">
-                    <ModalProject open={openModal.modalProject} close={() => setModal('project')} task={false}  />
+                <div className="bg-slate-200 w-full relative p-2 overflow-y-auto">
+                    <ModalProject open={openModal.modalProject} close={() => setModal('project')}/>
                         <div className="w-full relative flex flex-row justify-between ">
                             <TabContent /> 
                             <div className="w-1/2 m-4 flex justify-center items-center">
@@ -89,7 +90,7 @@ export default function Home(){
                             </div>
                         <div className="w-max h-12 p-2 bg-white  absolute right-0 mt-2 mr-2 rounded-full flex justify-between items-center ">
                         <ul className="flex flex-row gap-2 relative">
-                            <TopMenu name="créer un projet" icon={faCirclePlus} click={() => setModal('project') } />
+                            <TopMenu name="create project" icon={faCirclePlus} click={() => setModal('project') } />
                             <TopMenu name="Notification" icon={faBell} click={() => setModal('') } />
                             <NotificationBox isopen={openModal.modalNotification} />
                         </ul>
@@ -107,6 +108,7 @@ export default function Home(){
                         </span>
                     </div>
                     </div>
+                    <ListTask />
                 </div>
             </div>
         

@@ -1,9 +1,10 @@
 
-import { faAdd, faClose, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faClose, faSearch, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import React, { MouseEventHandler, useState } from "react";
 import TaskList from "./TaskList.tsx";
+import TeamsAdd from "./TeamsaddTask.tsx";
 
 
 type propModal = {
@@ -21,7 +22,8 @@ export default function ModalProject(open: propModal){
             nameProjet : "",
             dtDebut: "",
             dtFin: "",
-            openTask: false
+            openTask: false, 
+            task: ''
         })
 
         const [tasks, setTask] =  useState<string[]>([])
@@ -47,7 +49,7 @@ export default function ModalProject(open: propModal){
                     )
                 }
             }
-            const {nameProjet, dtDebut, dtFin} = value;
+            const {nameProjet, dtDebut, dtFin, task} = value;
             // console.log(nameProjet, dtDebut, dtFin)
 
 
@@ -58,6 +60,10 @@ export default function ModalProject(open: propModal){
                     const nameTask: string = e.target.nameTask.value;
                     console.log(nameTask);
                     setTask([...tasks, nameTask]);
+                    setValue(prevalue => ({
+                        ...prevalue,
+                        task: ''
+                    }))
                     console.log(tasks);
                 }
 
@@ -69,10 +75,16 @@ export default function ModalProject(open: propModal){
                         }))
                         e.stopPropagation();
                     }
-
-                
                     const setAssign = () => {
                         setshowAssign(!showassign)
+                        console.log("show assiggn")
+                    }
+
+                    const handlechangeTask = (e) => {
+                        setValue(prevalue => ({
+                            ...prevalue,
+                            task: e.target.value
+                        }))
                     }
 
         
@@ -84,7 +96,7 @@ export default function ModalProject(open: propModal){
         transition={{duration:0.2, type: 'tween', bounce: 0.2 }}
         
         
-        className="w-full h-screen bg-gradient-to-t from-sky-500/15 rounded-lg via-cyan-500/10 to-purple-600/15 backdrop-blur-xl absolute flex justify-center items-center z-10">
+        className="w-full h-screen bg-gradient-to-t from-sky-500/15 rounded-lg via-cyan-500/10 to-purple-600/15 backdrop-blur-xl absolute flex justify-center items-center z-50">
             <div className="w-modal rounded-xl h-modal relative bg-white overflow-hidden flex flex-col after:content[''] after:w-full after:h-full after:-inset-10 after:-z-20  after:bg-gradient-to-br after:from-pink-600 after:to-blue-600 after:absolute" onClick={(e) => CloseTask}>
                         <div className="w-full p-2 flex flex-row justify-start relative">
                             <h5 className="laila-light">Projet ~ <span className={`font-bold underline ${nameProjet === '' ? 'decoration-red-600' : 'decoration-blue-400'} `}>{nameProjet === '' ? 'Undifined': nameProjet}</span> </h5>
@@ -95,18 +107,18 @@ export default function ModalProject(open: propModal){
                         <div className="w-full h-full flex flex-row justify-between">
                             <div className="w-full h-full flex justify-start gap-10 flex-col  p-2">
                             <label htmlFor="name" className="flex flex-col items-start w-full">
-                                <span className="laila-semibold">Nom : <span className="text-red-400 text-lg font-bold">*</span> </span>
-                                <input type="text" name="name" value={nameProjet} id="" placeholder="entrer le nom du projet" onChange={(e) => setProjet('nameProjet', e.target.value) } className="rounded-lg w-full laila-light"/>
+                                <span className="laila-semibold">Name : <span className="text-red-400 text-lg font-bold">*</span> </span>
+                                <input type="text" name="name" value={nameProjet} id="" placeholder="entrer le nom du projet" onChange={(e) => setProjet('nameProjet', e.target.value) } className="rounded-lg w-full laila-light bg-slate-200 p-2 border border-slate-400 focus:border-none focus:outline focus:outline-slate-400"/>
                             </label>
 
                                 <div className="w-full flex flex-row gap-10">
                                     <label htmlFor="dtdebut" className="w-1/2 flex items-start flex-col">
-                                    <span className="laila-semibold">Début : <span className="text-red-400 text-lg font-bold">*</span> </span>
-                                        <input type="date" name="dtdebut" value={dtDebut} onChange={(e) => setProjet("dtDebut", e.target.value)} className="w-full rounded-lg laila-light" />
+                                    <span className="laila-semibold">Begining : <span className="text-red-400 text-lg font-bold">*</span> </span>
+                                        <input type="date" name="dtdebut" value={dtDebut} onChange={(e) => setProjet("dtDebut", e.target.value)} className="w-full rounded-lg laila-light bg-slate-200 p-2 border border-slate-400 focus:border-none focus:outline focus:outline-slate-400" />
                                     </label>
                                     <label htmlFor="dtfin" className="w-1/2 flex items-start flex-col">
-                                    <span className="laila-semibold">Fin: <span className="text-red-400 text-lg font-bold">*</span> </span>
-                                        <input type="date" name="dtfin" value={dtFin} className="rounded-lg w-full laila-light" onChange={(e) =>  setProjet('dtFin', e.target.value)} />
+                                    <span className="laila-semibold">Deadline: <span className="text-red-400 text-lg font-bold">*</span> </span>
+                                        <input type="date" name="dtfin" value={dtFin} className="rounded-lg w-full laila-light bg-slate-200 p-2 border border-slate-400 focus:border-none focus:outline focus:outline-slate-400" onChange={(e) =>  setProjet('dtFin', e.target.value)} />
                                     </label>
                                 </div>
                               
@@ -123,7 +135,7 @@ export default function ModalProject(open: propModal){
                                         <form action="" className="w-full h-full flex flex-col gap-6" onSubmit={(e) => saveTask(e)} >
                                             <label htmlFor="name" className="w-full flex flex-col px-4 items-start ">
                                                 <span className="laila-semibold ">Name</span>
-                                                <input type="text" name="nameTask" className="w-full laila-light h-7 focus:ring-sky-200/40 border-slate rounded-full"/>
+                                                <input type="text" value={task} onChange={handlechangeTask} name="nameTask" className="w-full laila-light h-7 focus:ring-sky-200/40 border-slate rounded-full bg-slate-200 p-2 border border-slate-400 focus:border-none focus:outline focus:outline-slate-400" />
                                             </label>
                                             <div className="w-full flex justify-center">
                                                 <button className="text-lg max-w-max text-white bg-black/90 laila-semibold px-2 rounded-md"  >Save</button>
@@ -132,16 +144,14 @@ export default function ModalProject(open: propModal){
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-full h-full backdrop-blur-3xl bg-white/40 rounded-lg py-10 overflow-hidden overflow-y-auto">
+                            <div className="w-full h-full backdrop-blur-3xl bg-white/40 rounded-lg py-10 overflow-hidden overflow-y-auto p-2">
 
-                                    <div className={`w-full h-60 bg-white  p-2 shadow-2xl shadow-gray-300 border border-slate-300 absolute z-10 top-30 rounded-2xl`}>
-                                        <p className="text-start font-bold laila-semibold w-full ">Teams</p>
-                                    </div>
+                                   {showassign && ( <TeamsAdd showbox={setAssign} />)}
 
                                             <p className="w-full  rounded-lg text-2xl font-bold laila-bold underline backdrop-blur-2xl  text-start p-3 sticky top-0">Task</p>
                                              
                                              <ul className="w-full flex items-start flex-col gap-4">
-                                                    <TaskList  list={tasks} assign={setAssign}/>
+                                                    <TaskList  list={tasks}  assign={setAssign} />
                                              </ul>
                             </div>
                     
