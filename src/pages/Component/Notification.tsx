@@ -33,11 +33,11 @@ export default function NotificationBox(isopen: notification){
         
         
         className="w-96 h-96 bg-white  absolute p-3 top-14 right-4 z-20 rounded-xl shadow-xl shadow-gray-300 overflow-hidden flex flex-col justify-between">
-                <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+                <div className="text-sm font-medium text-center text-gray-500 border-b  dark:text-gray-400 border-gray-300">
                     <ul className="w-full h-full flex justify-between flex-row -mb-px">
                         
                        {item.map((itemName, index) => (
-                         <li className={` me-2 inline-block p-4 border-b-2 active border-transparent rounded-t-lg hover:text-gray-600 ${ selectedItem === index ? 'border-blue-600' :'' } cursor-pointer transition-all duration-300`} key={index} onClick={() => handleClick(index)}>{itemName}</li>
+                         <li className={` me-2 inline-block p-4 border-b-2 border-transparent  rounded-t-lg hover:text-black ${ selectedItem === index ? 'border-blue-700' :'' } cursor-pointer transition-all duration-300`} key={index} onClick={() => handleClick(index)}>{itemName}</li>
                        ))}
                      
                     </ul>

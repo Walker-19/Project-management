@@ -23,7 +23,7 @@ export default function CardProject(projet: propProjet){
                         <Tag name="web design" icon={faHashtag} sizeIcon="xs" />
                         <Tag name="web design" icon={faHashtag} sizeIcon="xs" />
                     </ul>
-
+                        
                     </div>
                 </div>
                 <div className="w-full h-1/2 flex flex-col pb-10 justify-between px-2 bg-white text-black rounded-tr-2xl rounded-tl-2xl p-4 shadow-2xl shadow-slate-600">

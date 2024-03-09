@@ -11,6 +11,7 @@ import ModalProject from "../Component/ModalProject.tsx";
 import TabContent from "../Component/TabContent.tsx";
 import NotificationBox from "../Component/Notification.tsx";
 import ListTask from "../Component/TabTask.tsx";
+import { projet, tags } from "../../Model/Functions/base.tsx";
 export default function Home(){
     // const location = useLocation();
     // const user = location.state.user;    
@@ -57,7 +58,8 @@ export default function Home(){
         activeProject: false,
         activeTask: true
     })
-   }
+}
+const sliceProject = projet.slice(0,3);
       
   
 
@@ -70,9 +72,9 @@ export default function Home(){
                     </header>
                     <main className="mt-12 overflow-y-auto h-full">
                         <ul className="flex flex-col gap-5">
-                          <MenuDashboard name={'Home'} icon={faHouse} isSbumenu={false} subMenu={null} active={active.activeHome} onItem={PageHome} />
-                            <MenuDashboard name={'project'} icon={faFolderTree} isSbumenu={true} subMenu={null} active={active.activeProject} onItem={PageProject}  />
-                            <MenuDashboard name={'Task'} icon={faListCheck} subMenu={null} isSbumenu={true} active= {active.activeTask} onItem={PageTask} />
+                          <MenuDashboard name={'Home'} path="/pages/Dashboard" icon={faHouse} isSbumenu={false} subMenu={null} active={active.activeHome} onItem={PageHome} />
+                            <MenuDashboard name={'Project'} path="/pages/Dashboard/Project" icon={faFolderTree} isSbumenu={true} subMenu={null} active={active.activeProject} onItem={PageProject}  />
+                            <MenuDashboard name={'Task'} path="/pages/Dashboard/Task" icon={faListCheck} subMenu={null} isSbumenu={true} active= {active.activeTask} onItem={PageTask} />
                         </ul>
                     </main>
                 </div>
@@ -91,7 +93,7 @@ export default function Home(){
                         <div className="w-max h-12 p-2 bg-white  absolute right-0 mt-2 mr-2 rounded-full flex justify-between items-center ">
                         <ul className="flex flex-row gap-2 relative">
                             <TopMenu name="create project" icon={faCirclePlus} click={() => setModal('project') } />
-                            <TopMenu name="Notification" icon={faBell} click={() => setModal('') } />
+                            <TopMenu name="Notification" icon={faBell} click={() => setModal('') }    />
                             <NotificationBox isopen={openModal.modalNotification} />
                         </ul>
                         <img src="https://img.freepik.com/photos-gratuite/portrait-homme-s-amusant_23-2149443790.jpg" className="w-10 h-10 object-cover rounded-full relative p-1" alt="" />
@@ -99,9 +101,10 @@ export default function Home(){
                         </div>
                     
                     <div className="w-full flex flex-row mt-10 justify-start items-center p-5 gap-2">
-                    <CardProject name="Leadin Page" time="" />
-                    <CardProject name="DashBoard Admin" time="" />
-                    <CardProject name="Api E-commerce" time="" />
+                    {sliceProject.map((item, index) => (
+                        
+                            <CardProject name={item} time={''} key={index} />
+                    ))}
                     <div className="w-max px-5 py-1 rounded-full h-max bg-white flex justify-center items-center relative cursor-pointer hover:bg-slate-300">
                         <span className="text-md font-bold font-nunito w-full h-full flex justify-center items-center">All
                             <FontAwesomeIcon  icon={faArrowRight} className="text-white mx-2 p-1 bg-purple-800 rounded-full absolute border-4 border-s-slate-200 -right-6 -rotate-45"/>

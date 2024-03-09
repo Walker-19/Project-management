@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faMinus } from "@fortawesome/free-solid-svg-icons";
 import React, { MouseEventHandler, useRef, useState } from "react";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { Link } from "react-router-dom";
 
 type Menu = {
         name: String;
@@ -9,7 +10,8 @@ type Menu = {
         subMenu: string[] | null;
         isSbumenu: boolean,
         active: boolean,
-        onItem: MouseEventHandler
+        onItem: MouseEventHandler,
+        path: string
             
         }
 
@@ -28,6 +30,7 @@ const changePage = () =>{
 }
 
     return (<>
+    <Link to={`${menu.path}`} >
             <li className="p-3 mx-4  rounded-lg flex flex-col gap-3 items-center justify-start text-slate-500 relative cursor-pointer" style={menu.active ? {'color': "black"}: {animation: "both"}} onClick={menu.onItem}>
                     <div className="w-full flex flex-row justify-start items-center p-2" onClick={handleOpenSubMenu} >
                     <FontAwesomeIcon icon={menu.icon} className="" size="lg" />
@@ -41,5 +44,6 @@ const changePage = () =>{
                     </div>))}
                 </li>
     
+    </Link>
     </>)    
 }

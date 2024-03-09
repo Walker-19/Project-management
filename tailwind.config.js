@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      top: {
+        'center': '50%'
+      },
+      left: {
+        'center': '50%'
+      },
       width: {
         modal: 'calc(100% - 20px)'
       },
